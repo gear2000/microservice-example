@@ -10,6 +10,28 @@
 | transform      | the second microservice that returns a message reversed
 | nginx      | the proxy that serves out the application
     
+**File Layout**
+
+```
+|-- app
+|   |-- bin
+|   |   |-- run.py
+|   |   `-- run.sh
+|   |-- Dockerfile
+|   `-- requirements.txt
+|-- nginx
+|   |-- default.conf
+|   `-- Dockerfile
+|-- transform
+|   |-- bin
+|   |   |-- run.py
+|   |   `-- run.sh
+|   |-- Dockerfile
+|   `-- requirements.txt
+|-- docker-compose.yml
+|-- ecs-params.yml
+`-- README.md
+```
 
 **Build**
 
