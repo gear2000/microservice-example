@@ -68,7 +68,7 @@ Configure ECS profile and cluster
 export AWS_ACCESS_KEY_ID=<aws_access_key_id>
 export AWS_SECRET_ACCESS_KEY=<aws_secret_access_key>
 ecs-cli configure profile --profile-name test --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY
-ecs-cli configure --cluster test --region us-east-1 --default-launch-type EC2 --config-name diginex
+ecs-cli configure --cluster test --region us-east-1 --default-launch-type EC2 --config-name sample
 ```
 
 Create ECS cluster
@@ -78,7 +78,7 @@ ecs-cli up --keypair ed_ssh_key --capability-iam --size 1 --instance-type t2.mic
 
 Standup application as a ECS task
 ```
-ecs-cli compose service up --cluster test --cluster-config diginex
+ecs-cli compose service up --cluster test --cluster-config sample
 ```
 
 View cluster processes/status
@@ -93,12 +93,12 @@ ecs-cli scale --capability-iam --size 2 --cluster test
 
 Scale service to create redundancy and performance
 ```
-ecs-cli compose service scale 2 --cluster test --cluster-config diginex
+ecs-cli compose service scale 2 --cluster test --cluster-config sample
 ```
 
 Tear down tasks when done
 ```
-ecs-cli compose service down --cluster test --cluster-config diginex
+ecs-cli compose service down --cluster test --cluster-config sample
 ```
 
 Tear down cluster when done
