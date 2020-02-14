@@ -45,6 +45,7 @@ chmod +x /usr/local/bin/ecs-cli
 ```
 
     - Configure ECS profile and cluster
+
 ```
 export AWS_ACCESS_KEY_ID=<aws_access_key_id>
 export AWS_SECRET_ACCESS_KEY=<aws_secret_access_key>
@@ -53,36 +54,43 @@ ecs-cli configure --cluster test --region us-east-1 --default-launch-type EC2 --
 ```
 
     - Create ECS cluster
+
 ```
 ecs-cli up --keypair ed_ssh_key --capability-iam --size 1 --instance-type t2.micro --cluster test
 ```
 
     - Standup application as a ECS task
+
 ```
 ecs-cli compose service up --cluster test --cluster-config diginex
 ```
 
     - View cluster processes/status
+
 ```
 ecs-cli ps --cluster test
 ```
 
     - Increase cluster size
+
 ```
 ecs-cli scale --capability-iam --size 2 --cluster test
 ```
 
     - Scale service to create redundancy and performance
+
 ```
 ecs-cli compose service scale 2 --cluster test --cluster-config diginex
 ```
 
     - Tear down tasks when done
+
 ```
 ecs-cli compose service down --cluster test --cluster-config diginex
 ```
 
     - Tear down cluster when done
+
 ```
 ecs-cli down --cluster test
 ```
