@@ -1,0 +1,12 @@
+version: 1
+task_definition:
+  services:
+    app:
+      cpu_shares: 100
+      mem_limit: 262144000
+    transform:
+      cpu_shares: 100
+      mem_limit: 262144000
+    nginx:
+      cpu_shares: 100
+      mem_limit: 262144000

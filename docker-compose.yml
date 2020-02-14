@@ -1,0 +1,35 @@
+version: '3'
+services:
+  app:
+    container_name: app
+    image: williaumwu/ms-app-message
+    restart: always
+    links:
+       - transform
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    command: /usr/src/app/bin/run.sh
+  transform:
+    container_name: transform
+    image: williaumwu/ms-transform-message
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    command: /usr/src/app/bin/run.sh
+  nginx:
+    container_name: nginx
+    image: williaumwu/ms-nginx
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    links:
+       - app
+    restart: always
+    ports:
+      - "443:443"
+      - "80:80"
