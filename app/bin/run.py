@@ -95,7 +95,7 @@ class TransformInsertsRandString(Resource):
         inputargs["headers"] = {'Content-type': 'application/json' }
         inputargs["data"] = dumps({"message":message})
 
-        _endpoint = "{}:{}".format(self.http_endpt,self.http_port)
+        _endpoint = "{}:{}/reverse".format(self.http_endpt,self.http_port)
         _req = requests.post(_endpoint,**inputargs)
 
         if int(_req.status_code) != 200: return
@@ -131,7 +131,7 @@ class TransformInsertsRandString(Resource):
 
         return jsonify(results)
 
-api.add_resource(TransformInsertsRandString, '/')
+api.add_resource(TransformInsertsRandString, '/api')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=8080,debug=True)
