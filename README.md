@@ -106,7 +106,11 @@ Tear down cluster when done
 ecs-cli down --cluster test
 ```
 
+**System Diagram (Part 2)** 
+
+Though ECS is great way to deploy and scale this application.  It provides simplicity without having to manage the underlying cluster system like Kubernetes or Docker Swarm.  This is great option for small startups who have limited DevOps resources.  On a side note, the argument is not so much between ECS vs Kubernetes, but rather between AWS vs Kubernetes. For those we want to be multi-cloud, Kubernetes is the better agnostic option.  I have included this cloud agnostic system diagram (system-diagram.png) that shows the two microservies in a pod.  The pod serve as the scaling unit for Kubernetes.  Notably, I have removed the nginx proxy since the services layer by Kubernetes handles routing.
 
 
+**CI/CD (Part 3)**
 
-
+Continuous delivery (CD) automatically executes unit tests, performs docker builds, and provides automatic deployments.  Users have the option of using a varity of continuous integration (CI) tools such as SaaS products like CircleCI and TravisCI, and more customized controlled open source options like ConcourceCI and Jenkins. The main criteria is control vs resources; having more control requires more resources (e.g. Jenkin), whereas less control (CircleCI) requires less resources.  Provided there is high test coverage, any CI system will increase your software velocity, while producing more reliable software. It is truly a win-win situation.  To extend CI to CD, it suggested users implement GitOps to controll and version deployments through git commits. It is also recommended users practices blue/green canary deploys to safely cut over to new changes without having to schedule downtime.
