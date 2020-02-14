@@ -108,7 +108,7 @@ ecs-cli down --cluster test
 
 **System Diagram (Part 2)** 
 
-Though ECS is great way to deploy and scale this application.  It provides simplicity without having to manage an underlying cluster system like Kubernetes or Docker Swarm.  This is a great option for small startups who have limited DevOps resources.  On a side note, the argument is not so much between ECS vs Kubernetes as between AWS vs Kubernetes. For those who require multi-cloud, Kubernetes is the better agnostic choice.  I have included a cloud agnostic system diagram (system-diagram.png) that shows the two microservies in a pod.  The pod serve as the scaling unit for Kubernetes.  Notably, I have removed the nginx proxy since the services layer in Kubernetes handles routing.
+ECS is a great way to deploy and scale this application.  It provides simplicity without having to manage an underlying cluster system like Kubernetes or Docker Swarm.  This is a great option for small startups who have limited DevOps resources.  On a side note, the argument is not so much between ECS vs Kubernetes as between AWS vs Kubernetes. For those who require multi-cloud, Kubernetes is the better agnostic choice.  I have included a cloud agnostic system diagram (system-diagram.png) that shows the two microservies in a pod.  The pod serve as the scaling unit for Kubernetes.  Notably, I have removed the nginx proxy since the services layer in Kubernetes handles routing.
 
 
 **CI/CD (Part 3)**
