@@ -7,7 +7,7 @@
 | microservice      | description                            
 | ------------- | -------------------------------------- 
 | app   | the main entry point that injects a random number to the response
-| transform      | the second microservice that returns a message reverse
+| transform      | the second microservice that returns a message reversed
 | nginx      | the proxy that serves out the application
     
 
@@ -15,28 +15,28 @@
 
   - Each microservice is separated into their own folder with a Dockerfile used for building the image.
 
-  - For example, to build the app microservice and push it to dockerhub:
+  - For example, to build the app microservice and push it to Dockerhub:
 
-                ```
-                cd app
-                docker build -t <docker_username>/app:latest .
-                docker login -u <username> -p <password>
-                docker push <docker_username>/app:latest
+```
+cd app
+docker build -t <docker_username>/app:latest .
+docker login -u <username> -p <password>
+docker push <docker_username>/app:latest
 
-                ```
+```
 
 **Deploy**
 
   - To deploy, you can standup the application on your laptop by using using the docker-compose.yml file.
 
-                ```
-                docker-compose up -d
+```
+docker-compose up -d
 
-                ```
+```
 
   - To deploy to ECS:
 
-# Install ECS cli
+    - Install ECS CLI
 
 ```
 curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
