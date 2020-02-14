@@ -2,7 +2,7 @@
 
   - The application receives a message, and returns the message reversed along with a random number.
 
-  - There are three microservices that are used together: 
+  - The application consist of three: 
 
 | microservice      | description                            
 | ------------- | -------------------------------------- 
@@ -108,8 +108,8 @@ ecs-cli down --cluster test
 
 **System Diagram (Part 2)** 
 
-ECS is a great way to deploy and scale this application. It provides simplicity without having to manage an underlying cluster system like Kubernetes or Docker Swarm. This is a great option for small startups who have limited DevOps resources. On a side note, the argument is not so much between ECS vs Kubernetes as between AWS vs Kubernetes. For those who require multi-cloud, Kubernetes is the better agnostic choice. For cloud provides such as AWS, GCP, or Azure, simply use their version of Kubernetes as a service and then deploy this app with conventional Kubernetes API/kubectl calls. I have included a cloud agnostic system diagram (system-diagram.png) that shows the two microservices in a pod. The pod is the scaling unit for Kubernetes. Notably, I have removed the nginx proxy since the services layer in Kubernetes handles routing.
+ECS is a great way to deploy and scale this application. It provides simplicity without having to manage an underlying cluster system like Kubernetes or Docker Swarm. This is a great option for small startups who have limited DevOps resources. On a side note, the choice is not so much between ECS vs Kubernetes as between AWS vs Kubernetes. For those who require multi-cloud, Kubernetes is the better agnostic choice. For cloud provides such as AWS, GCP, or Azure, simply use their version of Kubernetes as a service and then deploy this app with conventional Kubernetes API/kubectl calls. I have included a cloud agnostic system diagram (system-diagram.png) that shows the two microservices in a pod. The pod is the scaling unit for Kubernetes. Notably, I have removed the nginx proxy since the services layer in Kubernetes handles routing.
 
 **CI/CD (Part 3)**
 
-Continuous delivery (CD) automatically executes unit tests, performs docker builds, and provides automatic deployments.  Users have the option of using a variety of continuous integration (CI) tools such as SaaS products like CircleCI and TravisCI, and more customized controlled open source options like ConcourceCI and Jenkins. The main criteria is again control vs resources; having more control requires more resources (e.g. Jenkin), while having less control (CircleCI) requires less resources.  Regardless, any CI system will increase your software velocity, while producing more reliable software. It is truly a win-win situation.  To extend CI to CD, it suggested users implement GitOps to control and version deployments through git commits. It is also recommended users practice blue/green canary deploys to safely cut over to new software without having to schedule downtime.
+Continuous delivery (CD) automatically executes unit tests, performs docker builds, and provides automatic deployments.  Users have the option of using a variety of continuous integration (CI) tools such as SaaS products like CircleCI and TravisCI, and more customizable open source options like ConcourceCI and Jenkins.  The SaaS provides will also handle the plumbing (Webhooks/GitOps) like connecting Github/Bitbucket to the CI system. Again, the main criteria is control vs resources; having more control requires more skilled people.  Regardless, any CI system will increase your software velocity, while producing more reliable software. It is truly a win-win situation. To extend CI to CD, it suggested users implement GitOps to control and version deployments through git commits. It is also recommended users practice blue/green canary deploys to safely and progressively cut over to new software without having to schedule downtime.
