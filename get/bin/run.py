@@ -5,46 +5,42 @@ from flask import Flask
 #from flask import current_app as app
 
 from flask_restful import Resource
-from flask_restful import reqparse
+#from flask_restful import reqparse
 from flask_restful import Api
 
 app = Flask(__name__)
 api = Api(app)
 
-class PostEndpoint(Resource):
+class GetEndpoint(Resource):
 
     """
-    A class that accepts a http post
+    A class that accepts a http get
     ...
 
     Attributes
     ----------
     Methods
     -------
-    post()
-         receives a http post 
+    get()
+         receives a http get 
     """
 
     def __init__(self):
-        self.classname = "PostEndpoint"
+        self.classname = "GetEndpoint"
 
-    def post(self):
+    def get(self):
 
-        """parses the http post
+        """parses the http get
 
         Returns
         -------
         True
         """
-
-        parser = reqparse.RequestParser()
-        args = parser.parse_args()
-
-        app.logger.info("Receives an HTTP post at /ad-event with args {}".format(args))
+        app.logger.info("Receives an HTTP get at /ad")
 
         return True
 
-api.add_resource(PostEndpoint, '/ad-event')
+api.add_resource(GetEndpoint, '/ad')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=8080,debug=True)
