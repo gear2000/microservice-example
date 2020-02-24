@@ -9,7 +9,6 @@ services:
       options:
         awslogs-region: "us-east-1"
         awslogs-group: "get-request-logs"
-        awslogs-stream: "app-docker-logs"
     command: /usr/src/app/bin/run.sh
   post:
     container_name: post
@@ -20,7 +19,6 @@ services:
       options:
         awslogs-region: "us-east-1"
         awslogs-group: "post-request-logs"
-        awslogs-stream: "app-docker-logs"
     command: /usr/src/app/bin/run.sh
   nginx:
     container_name: nginx
@@ -30,7 +28,6 @@ services:
       options:
         awslogs-region: "us-east-1"
         awslogs-group: "nginx-logs"
-        awslogs-stream: "app-docker-logs"
     links:
        - get
        - post
