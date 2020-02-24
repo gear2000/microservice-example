@@ -4,30 +4,15 @@ services:
     container_name: get
     image: williaumwu/ms-app:get
     restart: always
-    logging:
-      driver: "awslogs"
-      options:
-        awslogs-region: "us-east-1"
-        awslogs-group: "get-request-logs"
     command: /usr/src/app/bin/run.sh
   post:
     container_name: post
     image: williaumwu/ms-app:post
     restart: always
-    logging:
-      driver: "awslogs"
-      options:
-        awslogs-region: "us-east-1"
-        awslogs-group: "post-request-logs"
     command: /usr/src/app/bin/run.sh
   nginx:
     container_name: nginx
     image: williaumwu/ms-nginx
-    logging:
-      driver: "awslogs"
-      options:
-        awslogs-region: "us-east-1"
-        awslogs-group: "nginx-logs"
     links:
        - get
        - post
@@ -35,3 +20,8 @@ services:
     ports:
       - "443:443"
       - "80:80"
+    #logging:
+    #  driver: "awslogs"
+    #  options:
+    #    awslogs-region: "us-east-1"
+    #    awslogs-group: "nginx-logs"
