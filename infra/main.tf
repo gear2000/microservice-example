@@ -51,7 +51,7 @@ resource "aws_security_group" "web" {
 resource "aws_alb" "ecs-load-balancer" {
     name                = "ecs-load-balancer"
     security_groups     = ["${aws_security_group.web.id}"]
-    subnet_ids          = ["${module.vpc.public_subnets[0]}", "${module.vpc.public_subnets[1]}" ]
+    subnet_ids          = ${module.vpc.public_subnets}
 
     tags = {
       Name = "ecs-load-balancer"
