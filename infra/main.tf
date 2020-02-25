@@ -28,6 +28,7 @@ module "ecs_cluster" {
   
   region  = var.region
   vpc_id = "${vpc.id}"
+  subnet_ids = "subnet-eb32c271,subnet-64872d1f"
   
   component = "important-component"
   deployment_identifier = "production"
