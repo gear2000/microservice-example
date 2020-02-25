@@ -25,6 +25,7 @@ module "vpc" {
 resource "aws_security_group" "web" {
 	name = "web"
 	description = "Web Security Group"
+    vpc_id = "${module.vpc.vpc_id}"
 
 	ingress {
 		from_port = 80
