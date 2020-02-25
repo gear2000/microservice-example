@@ -27,8 +27,8 @@ module "ecs_cluster" {
   version = "0.2.5"
   
   region  = var.region
+  subnet_ids = "${aws_subnet.public[0]}"
   vpc_id = "${module.vpc.aws_vpc.id}"
-  subnet_ids = "${module.vpc.aws_subnet.public[0]}"
   
   component = "important-component"
   deployment_identifier = "production"
