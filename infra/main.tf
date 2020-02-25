@@ -22,22 +22,22 @@ module "vpc" {
   }
 }
 
-module "ecs_cluster" {
-  source = "infrablocks/ecs-cluster/aws"
-  version = "0.2.5"
-  
-  region  = var.region
-  subnet_ids = "${aws_subnet.public[0]}"
-  vpc_id = "${module.vpc.aws_vpc.id}"
-  
-  component = "important-component"
-  deployment_identifier = "production"
-  
-  cluster_name = "services"
-  cluster_instance_ssh_public_key_path = "~/.ssh/id_rsa.pub"
-  cluster_instance_type = "t2.small"
-  
-  cluster_minimum_size = 2
-  cluster_maximum_size = 10
-  cluster_desired_capacity = 4
-}
+#module "ecs_cluster" {
+#  source = "infrablocks/ecs-cluster/aws"
+#  version = "0.2.5"
+#  
+#  region  = var.region
+#  subnet_ids = "${aws_subnet.public[0]}"
+#  vpc_id = "${module.vpc.aws_vpc.id}"
+#  
+#  component = "important-component"
+#  deployment_identifier = "production"
+#  
+#  cluster_name = "services"
+#  cluster_instance_ssh_public_key_path = "~/.ssh/id_rsa.pub"
+#  cluster_instance_type = "t2.small"
+#  
+#  cluster_minimum_size = 2
+#  cluster_maximum_size = 10
+#  cluster_desired_capacity = 4
+#}
