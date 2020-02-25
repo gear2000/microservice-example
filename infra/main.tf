@@ -58,12 +58,6 @@ resource "aws_alb" "ecs-load-balancer" {
 
   enable_deletion_protection = true
 
-  access_logs {
-    bucket  = "${aws_s3_bucket.lb_logs.bucket}"
-    prefix  = "ecs-lb"
-    enabled = true
-  }
-
   tags = {
     Name = "ecs-load-balancer"
   }
