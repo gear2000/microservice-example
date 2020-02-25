@@ -50,13 +50,23 @@ resource "aws_security_group" "web" {
 }
 
 resource "aws_alb" "ecs-load-balancer" {
-    name                = "ecs-load-balancer"
-    security_groups     = ["$aws_security_group.web.id"]
-    subnet_ids          = "$module.vpc.public_subnets"
+  name                = "ecs-load-balancer"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = ["$aws_security_group.web.id"]
+  subnets            =["${module.vpc.public_subnets}"]
 
-    tags = {
-      Name = "ecs-load-balancer"
-    }
+  enable_deletion_protection = true
+
+  access_logs {
+    bucket  = "${aws_s3_bucket.lb_logs.bucket}"
+    prefix  = "ecs-lb"
+    enabled = true
+  }
+
+  tags = {
+    Name = "ecs-load-balancer"
+  }
 }
 
 ##resource "aws_alb_target_group" "ecs-target-group" {
