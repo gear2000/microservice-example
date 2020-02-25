@@ -27,8 +27,9 @@ module "ecs_cluster" {
   version = "0.2.5"
   
   region  = var.region
-  vpc_id = "${vpc.id}"
-  subnet_ids = "subnet-eb32c271,subnet-64872d1f"
+  vpc_id = "${aws_vpc.main-vpc.id}"
+
+  subnet_ids = "${aws_subnet.public[0]},${aws_subnet.public[1]},${aws_subnet.private[0]},${aws_subnet.private[1]}"
   
   component = "important-component"
   deployment_identifier = "production"
@@ -41,5 +42,3 @@ module "ecs_cluster" {
   cluster_maximum_size = 10
   cluster_desired_capacity = 4
 }
-
-#subnet_ids = "${vpc.aws_subnet.public[0]},${vpc.aws_subnet.public[1]},${vpc.aws_subnet.private[0]},${vpc.aws_subnet.private[1]}"
