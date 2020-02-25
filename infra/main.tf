@@ -28,7 +28,7 @@ module "ecs_cluster" {
   
   region  = var.region
   vpc_id = "${module.vpc.vpc_id}"
-  subnet_ids = "${aws_subnet.public[0]}"
+  subnet_ids = "${module.vpc.private_subnets[0]}"
   
   component = "important-component"
   deployment_identifier = "production"
@@ -41,3 +41,5 @@ module "ecs_cluster" {
   cluster_maximum_size = 10
   cluster_desired_capacity = 4
 }
+
+#module.vpc.vpc_cidr_block
