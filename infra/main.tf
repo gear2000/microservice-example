@@ -63,27 +63,27 @@ resource "aws_alb" "ecs-load-balancer" {
   }
 }
 
-#resource "aws_alb_target_group" "ecs-target-group" {
-#    name                = "ecs-target-group"
-#    port                = "80"
-#    protocol            = "HTTP"
-#    vpc_id              = "${module.vpc.vpc_id}"
-#
-#    health_check {
-#        healthy_threshold   = "5"
-#        unhealthy_threshold = "2"
-#        interval            = "30"
-#        matcher             = "200"
-#        path                = "/"
-#        port                = "traffic-port"
-#        protocol            = "HTTP"
-#        timeout             = "5"
-#    }
-#
-#    tags = {
-#      Name = "ecs-target-group"
-#    }
-#}
+resource "aws_alb_target_group" "ecs-target-group" {
+    name                = "ecs-target-group"
+    port                = "80"
+    protocol            = "HTTP"
+    vpc_id              = "${module.vpc.vpc_id}"
+
+    health_check {
+        healthy_threshold   = "5"
+        unhealthy_threshold = "2"
+        interval            = "30"
+        matcher             = "200"
+        path                = "/"
+        port                = "traffic-port"
+        protocol            = "HTTP"
+        timeout             = "5"
+    }
+
+    tags = {
+      Name = "ecs-target-group"
+    }
+}
 
 ##resource "aws_alb_listener" "alb-listener" {
 ##    load_balancer_arn = "${aws_alb.ecs-load-balancer.arn}"
