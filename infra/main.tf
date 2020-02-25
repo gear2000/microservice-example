@@ -27,7 +27,7 @@ module "ecs_cluster" {
   version = "0.2.5"
   
   region  = var.region
-  vpc_id = "${module.vpc.main-vpc.id}"
+  vpc_id = "${module.vpc.aws_vpc.id}"
 
   subnet_ids = "${module.vpc.aws_subnet.public[0]},${module.vpc.aws_subnet.public[1]},${module.vpc.aws_subnet.private[0]},${module.vpc.aws_subnet.private[1]}"
   
