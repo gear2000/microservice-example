@@ -49,16 +49,16 @@ resource "aws_security_group" "web" {
 	}
 }
 
-##resource "aws_alb" "ecs-load-balancer" {
-##    name                = "ecs-load-balancer"
-##    security_groups     = ["${aws_security_group.web.id}"]
-##    subnet_ids          = "${module.vpc.public_subnets"
-##
-##    tags = {
-##      Name = "ecs-load-balancer"
-##    }
-##}
-##
+resource "aws_alb" "ecs-load-balancer" {
+    name                = "ecs-load-balancer"
+    security_groups     = ["$aws_security_group.web.id"]
+    subnet_ids          = "$module.vpc.public_subnets"
+
+    tags = {
+      Name = "ecs-load-balancer"
+    }
+}
+
 ##resource "aws_alb_target_group" "ecs-target-group" {
 ##    name                = "ecs-target-group"
 ##    port                = "80"
