@@ -49,20 +49,20 @@ resource "aws_security_group" "web" {
 	}
 }
 
-#resource "aws_alb" "ecs-load-balancer" {
-#  name                = "ecs-load-balancer"
-#  internal           = false
-#  load_balancer_type = "application"
-#  security_groups    = ["$aws_security_group.web.id"]
-#  subnets            = ["$module.vpc.public_subnets[0]","$module.vpc.public_subnets[1]"]
-#
-#  enable_deletion_protection = true
-#
-#  tags = {
-#    Name = "ecs-load-balancer"
-#  }
-#}
-#
+resource "aws_alb" "ecs-load-balancer" {
+  name                = "ecs-load-balancer"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = ["$aws_security_group.web.id"]
+  subnets            = ["$module.vpc.public_subnets[0]","$module.vpc.public_subnets[1]"]
+
+  enable_deletion_protection = true
+
+  tags = {
+    Name = "ecs-load-balancer"
+  }
+}
+
 #resource "aws_alb_target_group" "ecs-target-group" {
 #    name                = "ecs-target-group"
 #    port                = "80"
