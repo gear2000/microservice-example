@@ -21,12 +21,12 @@ EOF
 
 resource "aws_iam_instance_profile" "ecs-ec2-role" {
   name = "ecs-ec2-role-test"
-  role = "${aws_iam_role.ecs-ec2-role.name}"
+  role = aws_iam_role.ecs-ec2-role.name
 }
 
 resource "aws_iam_role_policy" "ecs-ec2-role-policy" {
   name = "ecs-ec2-role-policy-test"
-  role = "${aws_iam_role.ecs-ec2-role.id}"
+  role = aws_iam_role.ecs-ec2-role.id
 
   policy = <<EOF
 {
@@ -91,7 +91,7 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "ecs-service-attach" {
-  role       = "${aws_iam_role.ecs-service-role.name}"
+  role       = aws_iam_role.ecs-service-role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
 }
 
