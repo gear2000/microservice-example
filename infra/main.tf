@@ -24,7 +24,7 @@ module "vpc" {
 
 module "web_sg" {
   source = "./modules/web_sg"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 }
 
 #resource "aws_alb" "ecs-load-balancer" {
