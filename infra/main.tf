@@ -40,18 +40,15 @@ module "ecs_asg" {
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
 }
 
-module "ecs_tasks" {
-  source = "./modules/ecs_tasks"
-  cluster_name = var.cluster.name
-  target_group_arn  = "${module.web_alb.alb_arn}"
-}
-
-#cluster_name = "${aws_ecs_cluster.ecs-cluster.name}"
-
 resource "aws_ecs_cluster" "ecs-cluster" {
     name = var.cluster_name
 }
 
+module "ecs_tasks" {
+  source = "./modules/ecs_tasks"
+  cluster_name = "${aws_ecs_cluster.ecs-cluster.name}"
+  target_group_arn  = "${module.web_alb.alb_arn}"
+}
 
 
 
