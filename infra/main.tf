@@ -39,71 +39,20 @@ module "ecs_asg" {
   security_groups    = ["${module.web_sg.sg_id}"]
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
   iam_role   = "${aws_iam_instance_profile.ecs-instance-profile.id}"
+  iam_role   = "${module.iam_roles.iam_instance_profile_id}"
 }
 
-resource "aws_ecs_cluster" "ecs-cluster" {
-    name = var.cluster_name
+module "iam_roles" {
+  source = "./modules/iam_roles"
 }
 
 module "ecs_tasks" {
   source = "./modules/ecs_tasks"
   cluster_name = "${aws_ecs_cluster.ecs-cluster.name}"
   target_group_arn  = "${module.web_alb.alb_arn}"
-  iam_role          = "${aws_iam_role.ecs-service-role.name}"
+  iam_role          = "${module.iam_roles.iam_service_role_name}"
 }
 
-# service IAM
-resource "aws_iam_role" "ecs-service-role" {
-    name                = "ecs-service-role"
-    path                = "/"
-    assume_role_policy  = "${data.aws_iam_policy_document.ecs-service-policy.json}"
+resource "aws_ecs_cluster" "ecs-cluster" {
+    name = var.cluster_name
 }
-
-resource "aws_iam_role_policy_attachment" "ecs-service-role-attachment" {
-    role       = "${aws_iam_role.ecs-service-role.name}"
-    policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
-}
-
-data "aws_iam_policy_document" "ecs-service-policy" {
-    statement {
-        actions = ["sts:AssumeRole"]
-
-        principals {
-            type        = "Service"
-            identifiers = ["ecs.amazonaws.com"]
-        }
-    }
-}
-
-# instance IAM
-resource "aws_iam_role" "ecs-instance-role" {
-    name                = "ecs-instance-role"
-    path                = "/"
-    assume_role_policy  = "${data.aws_iam_policy_document.ecs-instance-policy.json}"
-}
-
-data "aws_iam_policy_document" "ecs-instance-policy" {
-    statement {
-        actions = ["sts:AssumeRole"]
-
-        principals {
-            type        = "Service"
-            identifiers = ["ec2.amazonaws.com"]
-        }
-    }
-}
-
-resource "aws_iam_role_policy_attachment" "ecs-instance-role-attachment" {
-    role       = "${aws_iam_role.ecs-instance-role.name}"
-    policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-}
-
-resource "aws_iam_instance_profile" "ecs-instance-profile" {
-    name = "ecs-instance-profile"
-    path = "/"
-    roles = ["${aws_iam_role.ecs-instance-role.id}"]
-    provisioner "local-exec" {
-      command = "sleep 10"
-    }
-}
-
