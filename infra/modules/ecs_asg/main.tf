@@ -1,10 +1,8 @@
 resource "aws_launch_configuration" "ecs-launch-configuration" {
     name                        = "ecs-launch-configuration"
     image_id                    = var.image_id
-    instance_type               = "t2.micro"
     instance_type               = var.instance_type
     iam_instance_profile        = var.iam_role
-    associate_public_ip_address = true
 
     root_block_device {
       volume_type = "standard"
