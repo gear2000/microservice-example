@@ -21,19 +21,19 @@ variable "image_id" {
 }
 
 variable "max_instance_size" {
-   type = int
+   type = number
    default = 2
    description = "Max Instance Size"
 }
 
 variable "min_instance_size" {
-   type = int
+   type = number
    default = 1
    description = "Min Instance Size"
 }
 
 variable "desired_capacity" {
-   type = int
+   type = number
    default = 1
    description = "Desired Capacity"
 }
