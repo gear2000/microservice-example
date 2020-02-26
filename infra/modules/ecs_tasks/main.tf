@@ -1,6 +1,6 @@
 resource "aws_ecs_task_definition" "ms_sample" {
   family                = "ms_sample"
-  container_definitions = "${file("./task-definitions/service.json")}"
+  container_definitions = "${file("./modules/ecs_tasks/task-definitions/service.json")}"
 }
 
 resource "aws_ecs_service" "ms_sample-ecs-service" {
