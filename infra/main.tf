@@ -22,38 +22,16 @@ module "vpc" {
   }
 }
 
-resource "aws_security_group" "web" {
-	name = "web"
-	description = "Web Security Group"
-    vpc_id = "${module.vpc.vpc_id}"
-
-	ingress {
-		from_port = 80
-		to_port = 80
-		protocol = "tcp"
-		cidr_blocks = ["0.0.0.0/0"]
-	}
-
-	ingress {
-		from_port = 22
-		to_port = 22
-		protocol = "tcp"
-		cidr_blocks = ["0.0.0.0/0"]
-	}		
-
-	egress {
-		from_port = 0
-		to_port = 0
-		protocol = "-1"
-		cidr_blocks = ["0.0.0.0/0"]
-	}
+module "vpc" {
+  source = "/.modules/web_sg"
+  vpc_id = "${module.vpc.vpc_id}"
 }
 
 #resource "aws_alb" "ecs-load-balancer" {
 #  name                = "ecs-load-balancer"
 #  internal           = false
 #  load_balancer_type = "application"
-#  security_groups    = ["${aws_security_group.web.id}"]
+#  security_groups    = ["${module.security_groups.sg_id}"]
 #  subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
 #
 #  enable_deletion_protection = true
