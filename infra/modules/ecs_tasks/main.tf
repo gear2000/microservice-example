@@ -1,12 +1,43 @@
-resource "aws_ecs_task_definition" "ms_sample" {
-  family                = "ms_sample"
-  container_definitions = "${file("./modules/ecs_tasks/task-definitions/service.json")}"
+resource "aws_ecs_task_definition" "test" {
+
+  family = "ms-testing"
+
+  container_definitions = <<DEFINITION
+[
+  {
+    "name": "app-get",
+    "image": "williaumwu/ms-app:get",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8081,
+        "hostPort": 8081
+      }
+    ],
+    "memory": 256,
+    "cpu": 10
+  },
+  {
+    "name": "app-post",
+    "image": "williaumwu/ms-app:post",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 8080
+      }
+    ],
+    "memory": 256,
+    "cpu": 10
+  }
+]
+DEFINITION
 }
 
-resource "aws_ecs_service" "ms_sample-ecs-service" {
-  name            = "ms_sample-ecs-service"
+resource "aws_ecs_service" "test" {
+  name            = "ms-testing"
   cluster         =  var.cluster_name
-  task_definition = "${aws_ecs_task_definition.ms_sample.family}:desired_count${max("${aws_ecs_task_definition.ms_sample.revision}", "${data.aws_ecs_task_definition.ms_sample.revision}")}"
+  task_definition = "${aws_ecs_task_definition.test.family}:${aws_ecs_task_definition.test.revision}"
 
   desired_count   = 2
 
