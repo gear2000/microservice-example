@@ -1,6 +1,6 @@
 resource "aws_security_group" "web" {
 	description = "Web Security Group"
-    vpc_id      = "${var.vpc_id}"
+    vpc_id      = var.vpc_id
 	name        = "web"
 
 	ingress {
