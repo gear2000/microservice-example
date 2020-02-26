@@ -42,10 +42,12 @@ module "ecs_asg" {
 
 module "ecs_tasks" {
   source = "./modules/ecs_tasks"
+  cluster_name = aws_ecs_cluster.ecs-cluster.name
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
     name = var.cluster_name
+    target_group_arn  = "${module.web_alb.alb_arn}"
 }
 
 
