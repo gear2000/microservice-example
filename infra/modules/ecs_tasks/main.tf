@@ -1,9 +1,5 @@
-data "aws_ecs_task_definition" "ms_sample" {
-  task_definition = "${aws_ecs_task_definition.ms_sample.family}"
-}
-
 resource "aws_ecs_task_definition" "ms_sample" {
-    family                = "exam"
+    family                = "service"
     container_definitions = <<DEFINITION
 [
   {
