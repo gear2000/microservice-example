@@ -1,3 +1,9 @@
+variable "iam_role" {
+   type = string
+   default = "default"
+   description = "iam role"
+}
+
 variable "security_groups" {
    type = list
    description = "Security groups"

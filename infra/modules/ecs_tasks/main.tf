@@ -38,6 +38,7 @@ resource "aws_ecs_service" "test" {
   name            = "ms-testing"
   cluster         =  var.cluster_name
   task_definition = "${aws_ecs_task_definition.test.family}:${aws_ecs_task_definition.test.revision}"
+  iam_role        =  var.iam_role
 
   desired_count   = 2
 
