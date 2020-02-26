@@ -42,8 +42,10 @@ module "ecs_asg" {
 
 module "ecs_tasks" {
   source = "./modules/ecs_tasks"
-  cluster_name = "${aws_ecs_cluster.ecs-cluster.name}"
+  cluster_name = var.cluster.name
 }
+
+#cluster_name = "${aws_ecs_cluster.ecs-cluster.name}"
 
 resource "aws_ecs_cluster" "ecs-cluster" {
     name = var.cluster_name
