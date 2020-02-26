@@ -38,7 +38,6 @@ module "ecs_asg" {
   source = "./modules/ecs_asg"
   security_groups    = ["${module.web_sg.sg_id}"]
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
-  iam_role   = "${aws_iam_instance_profile.ecs-instance-profile.id}"
   iam_role   = "${module.iam_roles.iam_instance_profile_id}"
 }
 
