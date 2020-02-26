@@ -3,3 +3,8 @@ variable "cluster_name" {
    description = "Cluster name"
 }
 
+variable "target_group_arn" {
+   type = string
+   description = "Target Group Arn"
+}
+
