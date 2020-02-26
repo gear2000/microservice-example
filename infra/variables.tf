@@ -10,3 +10,10 @@ variable "azs" {
   description = "availability zones"
   default     = [ "us-east-1a", "us-east-1b" ]
 }
+
+# cluster name
+variable "cluster_name" {
+  type = string
+  description = "ECS cluster name"
+  default     = "test"
+}

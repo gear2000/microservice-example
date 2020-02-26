@@ -40,8 +40,9 @@ module "ecs_asg" {
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
 }
 
-
-
+resource "aws_ecs_cluster" "ecs-cluster" {
+    name = "${var.cluster_name}"
+}
 
 
 
