@@ -1,7 +1,6 @@
-# instance IAM
-# ecs ec2 role
+# ecs ec2 role - instance IAM
 resource "aws_iam_role" "ecs-ec2-role" {
-  name = "ecs-ec2-role-test"
+  name = "ecs-ec2-role"
 
   assume_role_policy = <<EOF
 {
@@ -21,12 +20,12 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "ecs-ec2-role" {
-  name = "ecs-ec2-role-test"
+  name = "ecs-ec2-role"
   role = aws_iam_role.ecs-ec2-role.name
 }
 
 resource "aws_iam_role_policy" "ecs-ec2-role-policy" {
-  name = "ecs-ec2-role-policy-test"
+  name = "ecs-ec2-role-policy"
   role = aws_iam_role.ecs-ec2-role.id
 
   policy = <<EOF
@@ -70,11 +69,9 @@ resource "aws_iam_role_policy" "ecs-ec2-role-policy" {
 EOF
 }
 
-# service IAM
-
-# ecs service role
+# ecs service role - service IAM
 resource "aws_iam_role" "ecs-service-role" {
-  name = "ecs-service-role-test"
+  name = "ecs-service-role"
 
   assume_role_policy = <<EOF
 {
