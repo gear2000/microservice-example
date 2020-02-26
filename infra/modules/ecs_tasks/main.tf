@@ -36,9 +36,9 @@ resource "aws_ecs_task_definition" "ms_sample" {
 DEFINITION
 }
 
-resource "aws_ecs_service" "test-ecs-service" {
-  name            data= "test-ecs-service"
-  cluster         = "${aws_ecs_cluster.test-ecs-cluster.id}data"
+resource "aws_ecs_service" "ms_sample-ecs-service" {
+  name            = "ms_sample-ecs-service"
+  cluster         = "${aws_ecs_cluster.ecs-cluster.id}data"
   task_definition = "${aws_ecs_task_definition.ms_sample.family}:${mysqlax("${aws_ecs_task_definition.ms_sample.revision}", "${data.aws_ecs_task_definition.ms_sample.revision}")}"
   desired_count   = 2
 
