@@ -35,22 +35,9 @@ resource "aws_alb_target_group" "ecs-target-group" {
     }
 }
 
-resource "aws_alb_listener" "app-get" {
+resource "aws_alb_listener" "app" {
     load_balancer_arn = aws_alb.ecs-load-balancer.arn
-    path              = "/ad"
-    port              = "8080"
-    protocol          = "HTTP"
-
-    default_action {
-        target_group_arn = aws_alb_target_group.ecs-target-group.arn
-        type             = "forward"
-    }
-}
-
-resource "aws_alb_listener" "app-post" {
-    load_balancer_arn = aws_alb.ecs-load-balancer.arn
-    path              = "/ad-event"
-    port              = "8080"
+    port              = "80"
     protocol          = "HTTP"
 
     default_action {
