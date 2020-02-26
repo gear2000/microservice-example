@@ -1,35 +1,6 @@
 resource "aws_ecs_task_definition" "ms_sample" {
-    family                = "service"
-    container_definitions = <<DEFINITION
-[
-  {
-    "name": "app-get",
-    "image": "williaumwu/ms-app:get",
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": 8081,
-        "hostPort": 8081
-      }
-    ],
-    "memory": 256,
-    "cpu": 10
-  },
-  {
-    "name": "app-post",
-    "image": "williaumwu/ms-app:post",
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": 8080,
-        "hostPort": 8080
-      }
-    ],
-    "memory": 256,
-    "cpu": 10
-  }
-]
-DEFINITION
+  family                = "ms_sample"
+  container_definitions = "${file("task-definitions/service.json")}"
 }
 
 resource "aws_ecs_service" "ms_sample-ecs-service" {
@@ -43,5 +14,5 @@ resource "aws_ecs_service" "ms_sample-ecs-service" {
     target_group_arn  = var.target_group_arn
     container_port    = 80
     container_name    = "ms_sample"
-}
+  }
 }
