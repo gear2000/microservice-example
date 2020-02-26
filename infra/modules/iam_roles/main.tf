@@ -4,7 +4,7 @@ resource "aws_iam_role" "ecs-ec2-role" {
 
   assume_role_policy = <<EOF
 {
-  "Version": "2020-02-28",
+  "Version": "2020-02-25",
   "Statement": [
     {
       "Action": "sts:AssumeRole",
@@ -30,7 +30,7 @@ resource "aws_iam_role_policy" "ecs-ec2-role-policy" {
 
   policy = <<EOF
 {
-    "Version": "2020-02-28",
+    "Version": "2020-02-25",
     "Statement": [
         {
             "Effect": "Allow",
@@ -75,7 +75,7 @@ resource "aws_iam_role" "ecs-service-role" {
 
   assume_role_policy = <<EOF
 {
-  "Version": "2020-02-28",
+  "Version": "2020-02-25",
   "Statement": [
     {
       "Action": "sts:AssumeRole",
