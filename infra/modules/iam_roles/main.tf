@@ -23,11 +23,6 @@ resource "aws_iam_role_policy_attachment" "ecs-service-role-attachment" {
 }
 
 # instance IAM
-resource "aws_iam_role" "ecs-instance-role" {
-    name                = "ecs-instance-role"
-    path                = "/"
-    assume_role_policy  = data.aws_iam_policy_document.ecs-instance-policy.json
-}
 
 data "aws_iam_policy_document" "ecs-instance-policy" {
     statement {
@@ -38,6 +33,12 @@ data "aws_iam_policy_document" "ecs-instance-policy" {
             identifiers = ["ec2.amazonaws.com"]
         }
     }
+}
+
+resource "aws_iam_role" "ecs-instance-role" {
+    name                = "ecs-instance-role"
+    path                = "/"
+    assume_role_policy  = data.aws_iam_policy_document.ecs-instance-policy.json
 }
 
 resource "aws_iam_role_policy_attachment" "ecs-instance-role-attachment" {

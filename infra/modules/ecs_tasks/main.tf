@@ -1,4 +1,4 @@
-resource "aws_ecs_task_definition" "test" {
+resource "aws_ecs_task_definition" "ms-testing" {
 
   family = "ms-testing"
 
@@ -34,10 +34,10 @@ resource "aws_ecs_task_definition" "test" {
 DEFINITION
 }
 
-resource "aws_ecs_service" "test" {
+resource "aws_ecs_service" "ms-testing" {
   name            = "ms-testing"
   cluster         =  var.cluster_name
-  task_definition = "${aws_ecs_task_definition.test.family}:${aws_ecs_task_definition.test.revision}"
+  task_definition = "${aws_ecs_task_definition.ms-testing.family}:${aws_ecs_task_definition.ms-testing.revision}"
   iam_role        =  var.iam_role
 
   desired_count   = 2
