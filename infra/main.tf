@@ -45,13 +45,14 @@ module "iam_roles" {
   source = "./modules/iam_roles"
 }
 
-module "ecs_tasks" {
-  source = "./modules/ecs_tasks"
-  cluster_name = "test"
-  target_group_arn  = "arn:aws:elasticloadbalancing:us-east-1:475360558348:loadbalancer/app/ecs-load-balancer/70b009d39b6c3635"
-  iam_role          = "arn:aws:iam::475360558348:role/ecs-service-role"
-}
-
 resource "aws_ecs_cluster" "ecs-cluster" {
     name = var.cluster_name
 }
+
+module "ecs_tasks" {
+  source = "./modules/ecs_tasks"
+  cluster_name = var.cluster_name
+  target_group_arn  = "${module.web_alb.alb_arn}"
+  iam_role          = "${module.iam_roles.iam_service_role_name}"
+}
+
