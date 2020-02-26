@@ -36,15 +36,14 @@ DEFINITION
 
 resource "aws_ecs_service" "ms-testing" {
   name            = "ms-testing"
-  cluster         = "test"
+  cluster         =  var.cluster_name
   task_definition = "${aws_ecs_task_definition.ms-testing.family}:${aws_ecs_task_definition.ms-testing.revision}"
-  iam_role          = "arn:aws:iam::475360558348:role/ecs-service-role"
+  iam_role        =  var.iam_role
 
-
-  desired_count   = 2
+  desired_count   = 1
 
   load_balancer {
-    target_group_arn  = "arn:aws:elasticloadbalancing:us-east-1:475360558348:loadbalancer/app/ecs-load-balancer/70b009d39b6c3635"
+    target_group_arn  = var.target_group_arn
     container_port    = 80
     container_name    = "ms_sample"
   }
