@@ -1,3 +1,11 @@
+resource "aws_cloudwatch_log_group" "ad" {
+  name = "/ad"
+}
+
+resource "aws_cloudwatch_log_group" "ad-event" {
+  name = "/ad-event"
+}
+
 resource "aws_ecs_task_definition" "ms-testing" {
 
   family = "ms-testing"
@@ -14,6 +22,14 @@ resource "aws_ecs_task_definition" "ms-testing" {
         "hostPort": 8081
       }
     ],
+    "logConfiguration": {
+    "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ad",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "get"
+      }
+    },
     "memory": 256,
     "cpu": 10
   },
@@ -27,6 +43,15 @@ resource "aws_ecs_task_definition" "ms-testing" {
         "hostPort": 8080
       }
     ],
+    "logConfiguration": {
+    "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ad-event",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "post"
+      }
+    },
+    "memory": 256,
     "memory": 256,
     "cpu": 10
   }

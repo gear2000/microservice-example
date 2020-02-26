@@ -2,19 +2,21 @@ resource "aws_alb" "ecs-load-balancer" {
   name                = "ecs-load-balancer"
   internal           = false
   load_balancer_type = "application"
+  enable_http2    = "true"
+  idle_timeout    = 600
 
   security_groups      = var.security_groups
   subnets              = var.subnets
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   tags = {
     Name = "ecs-load-balancer"
   }
 }
 
-resource "aws_alb_target_group" "ecs-target-group" {
-    name                = "ecs-target-group"
+resource "aws_alb_target_group" "ecs" {
+    name                = "ecs"
     port                = "80"
     protocol            = "HTTP"
     vpc_id              = var.vpc_id
@@ -31,7 +33,7 @@ resource "aws_alb_target_group" "ecs-target-group" {
     }
 
     tags = {
-      Name = "ecs-target-group"
+      Name = "ecs"
     }
 }
 
@@ -41,7 +43,7 @@ resource "aws_alb_listener" "app" {
     protocol          = "HTTP"
 
     default_action {
-        target_group_arn = aws_alb_target_group.ecs-target-group.arn
+        target_group_arn = aws_alb_target_group.ecs.arn
         type             = "forward"
     }
 }
