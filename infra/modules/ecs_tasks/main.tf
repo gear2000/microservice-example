@@ -7,7 +7,7 @@ resource "aws_ecs_service" "ad-app" {
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "ad-app"
+    container_name   = "nginx"
     container_port   = "80"
   }
 
