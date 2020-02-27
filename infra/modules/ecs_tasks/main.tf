@@ -39,7 +39,7 @@ resource "aws_ecs_task_definition" "ad-app" {
     "logDriver": "awslogs",
       "options": {
         "awslogs-group": "/ecs-ad/ad-app",
-        "awslogs-region": "eu-west-2",
+        "awslogs-region": "us-east-1",
         "awslogs-stream-prefix": "ecs"
       }
     }

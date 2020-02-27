@@ -1,7 +1,7 @@
 provider "aws" {
   profile = "default"
   version = ">= 2.1"
-  region  = var.aws_region
+  region  = var.region
 }
 
 # get ECS AMI with owner being "AWS"
@@ -36,9 +36,9 @@ module "vpc" {
   name = "ad-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = ["us-east-1a", "us-east-1b" ]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
+  azs             = var.azs
+  private_subnets = var.private_subnets
+  public_subnets  = var.public_subnets
 
   enable_nat_gateway = true
 
@@ -73,13 +73,12 @@ module "ecs_asg" {
 }
 
 resource "aws_ecs_cluster" "ad" {
-  name = "ad"
-  #name = var.cluster_name
+  name = var.cluster_name
 }
 
 module "ecs_tasks" {
   source = "./modules/ecs_tasks"
-  cluster_name = "ad_app"
+  cluster_name = var.cluster_name
   cluster_id = aws_ecs_cluster.ad.id
   target_group_arn  = "${module.alb.arn}"
   #target_group_arn = aws_alb_target_group.app.id
