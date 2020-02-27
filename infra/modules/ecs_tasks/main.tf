@@ -31,8 +31,8 @@ resource "aws_ecs_task_definition" "ad-app" {
         "hostPort": 80
       }
     ],
-    "links": [  "get",
-                "post"
+    "links": [ "get",
+               "post"
     ],
     "logConfiguration": {
     "logDriver": "awslogs",
