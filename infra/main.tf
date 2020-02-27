@@ -21,19 +21,7 @@ data "aws_ami" "ecs" {
   owners = ["591542846629"] 
 }
 
-# ECS cluster info
-data "template_file" "ecs-cluster" {
-  template = file("ecs-cluster.tpl")
-
-  vars = {
-    ecs_cluster = aws_ecs_cluster.ad.name
-  }
-}
-
-#module "vpc" {
-#  source = "./modules/vpc"
-#}
-
+# create private network
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -48,15 +36,18 @@ module "vpc" {
 
 }
 
+# create secruity group
 module "security_groups" {
   source = "./modules/security_groups"
   vpc_id = module.vpc.vpc_id
 }
 
+# create iam roles
 module "iam_roles" {
   source = "./modules/iam_roles"
 }
 
+# create application load balancer
 module "alb" {
   source = "./modules/alb"
   vpc_id = module.vpc.vpc_id
@@ -64,6 +55,7 @@ module "alb" {
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
 }
 
+# create autoscaling groups
 module "ecs_asg" {
   source = "./modules/ecs_asg"
   security_groups    = ["${module.security_groups.instance_id}"]
@@ -73,10 +65,12 @@ module "ecs_asg" {
   cluster_name       = var.cluster_name
 }
 
+# create ecs cluster
 resource "aws_ecs_cluster" "ad" {
   name = var.cluster_name
 }
 
+# deploy app
 module "ecs_tasks" {
   source = "./modules/ecs_tasks"
   cluster_name = var.cluster_name
