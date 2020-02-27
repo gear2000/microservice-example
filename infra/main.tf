@@ -70,7 +70,10 @@ module "ecs_asg" {
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
   iam_instance_profile = "${module.iam_roles.iam_instance_profile_id}"
   image_id           = data.aws_ami.ecs.id
-  #user_data          = data.template_file.ecs-cluster.rendered
+  user_data = <<-EOF
+                #!/bin/bash
+                echo ECS_CLUSTER=${var.cluster_name} >> /etc/ecs/ecs.config
+                EOF
 }
 
 resource "aws_ecs_cluster" "ad" {
