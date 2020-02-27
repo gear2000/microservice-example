@@ -1,14 +1,14 @@
-resource "aws_ecs_service" "ad_app" {
-  name            = "ad_app"
+resource "aws_ecs_service" "ad-app" {
+  name            = "ad-app"
   cluster         = aws_ecs_cluster.ad.id
-  task_definition = aws_ecs_task_definition.ad_app.arn
+  task_definition = aws_ecs_task_definition.ad-app.arn
   desired_count   = 4
   iam_role        = aws_iam_role.ecs-service-role.arn
   depends_on      = [aws_iam_role_policy_attachment.ecs-service-attach]
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.ad_app.id
-    container_name   = "ad_app"
+    target_group_arn = aws_alb_target_group.ad-app.id
+    container_name   = "ad-app"
     container_port   = "80"
   }
 
@@ -17,8 +17,8 @@ resource "aws_ecs_service" "ad_app" {
   }
 }
 
-resource "aws_ecs_task_definition" "ad_app" {
-  family = "ad_app"
+resource "aws_ecs_task_definition" "ad-app" {
+  family = "ad-app"
 
   container_definitions = <<EOF
 [
@@ -34,11 +34,11 @@ resource "aws_ecs_task_definition" "ad_app" {
     "memory": 300,
     "image": "nginx:latest",
     "essential": true,
-    "name": "ad_app",
+    "name": "ad-app",
     "logConfiguration": {
     "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "/ecs-ad/ad_app",
+        "awslogs-group": "/ecs-ad/ad-app",
         "awslogs-region": "us-west-1",
         "awslogs-stream-prefix": "ecs"
       }
@@ -49,7 +49,7 @@ EOF
 
 }
 
-resource "aws_cloudwatch_log_group" "ad_app" {
-  name = "/ecs-ad/ad_app"
+resource "aws_cloudwatch_log_group" "ad-app" {
+  name = "/ecs-ad/ad-app"
 }
 
