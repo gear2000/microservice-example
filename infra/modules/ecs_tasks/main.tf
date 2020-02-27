@@ -7,8 +7,7 @@ resource "aws_ecs_service" "ad-app" {
 # depends_on      = [aws_iam_role_policy_attachment.ecs-service-attach]
 
   load_balancer {
-    target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:475360558348:targetgroup/app/3064b65a7319edd7"
-    #target_group_arn = var.target_group_arn
+    target_group_arn = var.target_group_arn
     container_name   = "ad-app"
     container_port   = "80"
   }
