@@ -47,7 +47,7 @@ resource "aws_ecs_task_definition" "ad-app" {
   },
   {
     "name": "get",
-    "image": "williaumwu/ms-app:get",
+    "image": "williaumwu/ms-app-get",
     "essential": true,
     "portMappings": [
       {
@@ -68,7 +68,7 @@ resource "aws_ecs_task_definition" "ad-app" {
   },
   {
     "name": "post",
-    "image": "williaumwu/ms-app:post",
+    "image": "williaumwu/ms-app-post",
     "essential": true,
     "portMappings": [
       {

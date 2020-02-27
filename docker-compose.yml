@@ -2,12 +2,12 @@ version: '3'
 services:
   get:
     container_name: get
-    image: williaumwu/ms-app:get
+    image: williaumwu/ms-app-get
     restart: always
     command: /usr/src/app/bin/run.sh
   post:
     container_name: post
-    image: williaumwu/ms-app:post
+    image: williaumwu/ms-app-post
     restart: always
     command: /usr/src/app/bin/run.sh
   nginx:

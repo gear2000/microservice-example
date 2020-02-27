@@ -41,9 +41,14 @@
 
 ```
 cd get
-docker build -t <docker_username>/ms-get:latest .
+docker build -t <docker_username>/ms-app-get:latest .
 docker login -u <username> -p <password>
-docker push <docker_username>/ms-get:latest
+docker push <docker_username>/ms-app-get:latest
+
+cd post
+docker build -t <docker_username>/ms-app-post:latest .
+docker login -u <username> -p <password>
+docker push <docker_username>/ms-app-post:latest
 ```
 
 **Deploy**
