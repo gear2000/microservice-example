@@ -12,7 +12,7 @@ variable "cluster_name" {
 }
 
 variable "instance_type" {
-  default     = "t2.small"
+  default     = "t2.micro"
   description = "AWS instance"
 }
 
@@ -21,6 +21,18 @@ variable "azs" {
   type = list(string)
   description = "availability zones"
   default     = [ "us-east-1a", "us-east-1b" ]
+}
+
+variable "vpc_name" {
+  type = string
+  description = "vpc name"
+  default = "ad_vpc"
+}
+
+variable "cidr" {
+  type = string
+  description = "cidr for vpc"
+  default = "10.0.0.0/16"
 }
 
 variable "private_subnets" {

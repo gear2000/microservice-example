@@ -31,21 +31,22 @@ data "template_file" "ecs-cluster" {
 }
 
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-
-  name = "ad-vpc"
-  cidr = "10.0.0.0/16"
-
-  azs             = var.azs
-  private_subnets = var.private_subnets
-  public_subnets  = var.public_subnets
-
-  enable_nat_gateway = true
-
-  tags = {
-    Environment = "dev"
-  }
+  source = "modules/vpc"
 }
+
+#module "vpc" {
+#  source = "terraform-aws-modules/vpc/aws"
+#
+#  name = var.vpc_name
+#  cidr = var.cidr
+#
+#  azs             = var.azs
+#  private_subnets = var.private_subnets
+#  public_subnets  = var.public_subnets
+#
+#  enable_nat_gateway = true
+#
+#}
 
 module "security_groups" {
   source = "./modules/security_groups"
@@ -81,6 +82,7 @@ module "ecs_tasks" {
   cluster_name = var.cluster_name
   cluster_id = aws_ecs_cluster.ad.id
   target_group_arn  = "${module.alb.arn}"
-  iam_role          = "${module.iam_roles.iam_service_role_arn}"
+  #target_group_arn = aws_alb_target_group.app.id
+  #iam_role          = "${module.iam_roles.iam_service_role_arn}"
 }
 
