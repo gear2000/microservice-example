@@ -80,5 +80,6 @@ module "ecs_tasks" {
   cluster_id = aws_ecs_cluster.ad.id
   target_group_arn  = "${module.alb.arn}"
   iam_role          = "${module.iam_roles.iam_service_role_arn}"
+  nginx_image_ref   =  var.nginx_image_ref
 }
 

@@ -11,6 +11,21 @@ variable "cluster_name" {
   default     = "ad-app"
 }
 
+variable "nginx_image_ref" {
+  default     = "williaumwu/ms-nginx:app"
+  description = "Nginx image reference"
+}
+
+variable "get_image_ref" {
+  default     = "williaumwu/ms-app-get"
+  description = "HTTP get image reference"
+}
+
+variable "post_image_ref" {
+  default     = "williaumwu/ms-app-post"
+  description = "HTTP post image reference"
+}
+
 variable "deploy_name" {
   default     = "test-1"
   description = "Deploy namme"
