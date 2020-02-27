@@ -10,6 +10,11 @@ resource "aws_autoscaling_group" "ad-cluster" {
   default_cooldown          = 30
   termination_policies      = ["OldestInstance"]
 
+  # zero-time deploy
+  lifecycle {
+    create_before_destroy = true
+  }
+
   tag {
     key                 = "Name"
     value               = "ad-cluster-asg"
