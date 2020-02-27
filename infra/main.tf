@@ -52,10 +52,6 @@ module "security_groups" {
   vpc_id = module.vpc.vpc_id
 }
 
-#module "iam_roles" {
-#  source = "./modules/iam_roles"
-#}
-
 module "alb" {
   source = "./modules/alb"
   vpc_id = module.vpc.vpc_id
@@ -67,7 +63,6 @@ module "ecs_asg" {
   source = "./modules/ecs_asg"
   security_groups    = ["${module.security_groups.instance_id}"]
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
-  #iam_instance_profile = "${module.iam_roles.iam_instance_profile_id}"
   image_id           = data.aws_ami.ecs.id
   #user_data          = data.template_file.ecs-cluster.rendered
 }
@@ -81,7 +76,5 @@ module "ecs_tasks" {
   cluster_name = var.cluster_name
   cluster_id = aws_ecs_cluster.ad.id
   target_group_arn  = "${module.alb.arn}"
-  #target_group_arn = aws_alb_target_group.app.id
-  #iam_role          = "${module.iam_roles.iam_service_role_arn}"
 }
 

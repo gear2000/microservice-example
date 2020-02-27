@@ -26,7 +26,7 @@ resource "aws_iam_role_policy_attachment" "ecs-service-attach" {
 }
 
 ##############################################################
-#
+# ECS Tasks
 ##############################################################
 
 resource "aws_ecs_service" "ad-app" {
@@ -34,11 +34,14 @@ resource "aws_ecs_service" "ad-app" {
   cluster         = var.cluster_id
   task_definition = aws_ecs_task_definition.ad-app.arn
   desired_count   = 2
-  iam_role        = "${aws_iam_role.ecs-service-role.arn}"
+  #iam_role        = "${aws_iam_role.ecs-service-role.arn}"
+  iam_role        = "arn:aws:iam::475360558348:role/ecs-service-role"
   depends_on      = [aws_iam_role_policy_attachment.ecs-service-attach]
 
+
   load_balancer {
-    target_group_arn = var.target_group_arn
+    #target_group_arn = var.target_group_arn
+    target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:475360558348:targetgroup/app/d9f72f5a6163669d"
     container_name   = "ad-app"
     container_port   = "80"
   }
