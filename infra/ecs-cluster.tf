@@ -35,7 +35,7 @@ resource "aws_autoscaling_policy" "ad-cluster" {
       predefined_metric_type = "ASGAverageCPUUtilization"
     }
 
-    target_value = 40
+    target_value = 60
   }
 }
 

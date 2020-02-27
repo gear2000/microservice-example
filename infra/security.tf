@@ -1,8 +1,8 @@
-resource "aws_security_group" "lb_sg" {
-  description = "controls access to the application ELB"
+resource "aws_security_group" "alb" {
+  description = "ports on ALB"
 
   vpc_id = aws_vpc.ad-vpc.id
-  name   = "ad-ELB"
+  name   = "ad-app"
 
   ingress {
     protocol    = "tcp"
@@ -23,7 +23,7 @@ resource "aws_security_group" "lb_sg" {
 }
 
 resource "aws_security_group" "instance_sg" {
-  description = "controls direct access to application instances"
+  description = "access to application instances"
   vpc_id      = aws_vpc.ad-vpc.id
   name        = "application-instances-sg"
 
@@ -34,7 +34,7 @@ resource "aws_security_group" "instance_sg" {
     description = "Access from ALB"
 
     security_groups = [
-      aws_security_group.lb_sg.id,
+      aws_security_group.alb.id,
     ]
   }
 

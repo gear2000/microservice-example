@@ -2,7 +2,7 @@
 resource "aws_alb" "ad-alb" {
   name            = "ad-alb"
   subnets         = [aws_subnet.ad-public-1.id, aws_subnet.ad-public-2.id, aws_subnet.ad-public-3.id]
-  security_groups = [aws_security_group.lb_sg.id]
+  security_groups = [aws_security_group.alb.id]
   enable_http2    = "true"
   idle_timeout    = 600
 }

@@ -15,7 +15,7 @@ data "aws_ami" "ecs" {
   owners = ["591542846629"] 
 }
 
-# data for ECS cluster
+# ECS cluster info
 data "template_file" "ecs-cluster" {
   template = file("ecs-cluster.tpl")
 
