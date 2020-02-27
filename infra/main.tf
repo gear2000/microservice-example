@@ -31,7 +31,7 @@ data "template_file" "ecs-cluster" {
 }
 
 module "vpc" {
-  source = "modules/vpc"
+  source = "./modules/vpc"
 }
 
 #module "vpc" {
