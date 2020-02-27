@@ -14,14 +14,14 @@ resource "aws_alb_listener" "default_http" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_alb_target_group.nginx.id
+    target_group_arn = aws_alb_target_group.app.id
     type             = "forward"
   }
 }
 
 # setup ALB target group
-resource "aws_alb_target_group" "nginx" {
-  name       = "nginx"
+resource "aws_alb_target_group" "app" {
+  name       = "app"
   port       = 80
   protocol   = "HTTP"
   vpc_id     = aws_vpc.ad-vpc.id
