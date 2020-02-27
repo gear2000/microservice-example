@@ -1,5 +1,5 @@
 resource "aws_ecs_service" "ad-app" {
-  name         = var.cluster_name
+  name            = var.cluster_name
   cluster         = var.cluster_id
   task_definition = aws_ecs_task_definition.ad-app.arn
   desired_count   = 2
