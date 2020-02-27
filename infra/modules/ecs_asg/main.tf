@@ -1,6 +1,7 @@
 # Autoscaling groups
 resource "aws_autoscaling_group" "ad-cluster" {
-  name                      = "ecs-example"
+
+  name = var.deploy_name
   vpc_zone_identifier       = var.subnets
   min_size                  = "2"
   max_size                  = "10"

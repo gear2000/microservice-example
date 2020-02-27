@@ -11,6 +11,11 @@ variable "cluster_name" {
   default     = "ad_app"
 }
 
+variable "deploy_name" {
+  default     = "test-1"
+  description = "Deploy namme"
+}
+
 variable "instance_type" {
   default     = "t2.micro"
   description = "AWS instance"

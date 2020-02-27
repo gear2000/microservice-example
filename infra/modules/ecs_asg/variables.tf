@@ -4,6 +4,11 @@ variable "iam_instance_profile" {
    description = "iam role"
 }
 
+variable "deploy_name" {
+   type = string
+   description = "Deploy name"
+}
+
 variable "cluster_name" {
    type = string
    description = "Cluster Name"

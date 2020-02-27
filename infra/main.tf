@@ -57,6 +57,9 @@ module "alb" {
 
 # create autoscaling groups
 module "ecs_asg" {
+  # The deploy name should change with each new deploy
+  # to ensure Terraform rolls the updates
+  deploy_name = var.deploy_name
   source = "./modules/ecs_asg"
   security_groups    = ["${module.security_groups.instance_id}"]
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
