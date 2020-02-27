@@ -22,30 +22,74 @@ resource "aws_ecs_task_definition" "ad-app" {
   container_definitions = <<EOF
 [
   {
+    "name": "nginx",
+    "image": "williaumwu/ms-nginx:app"
+    "essential": true,
     "portMappings": [
       {
-        "hostPort": 0,
-        "protocol": "tcp",
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
-    "cpu": 256,
-    "memory": 300,
-    "image": "nginx:latest",
-    "essential": true,
-    "name": "ad-app",
+    "links": [  "get",
+                "post"
+    ],
     "logConfiguration": {
     "logDriver": "awslogs",
       "options": {
         "awslogs-group": "/ecs-ad/ad-app",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "ecs"
+        "awslogs-stream-prefix": "nginx"
       }
-    }
+    },
+    "memory": 256,
+    "cpu": 10
+  },
+  {
+    "name": "get",
+    "image": "williaumwu/ms-app:get",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8081,
+        "hostPort": 8081
+      }
+    ],
+    "logConfiguration": {
+    "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs-ad/ad-app",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "get"
+      }
+    },
+    "memory": 256,
+    "cpu": 10
+  },
+  {
+    "name": "post",
+    "image": "williaumwu/ms-app:post",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 8080
+      }
+    ],
+    "logConfiguration": {
+    "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs-ad/ad-app",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "post"
+      }
+    },
+    "memory": 256,
+    "memory": 256,
+    "cpu": 10
   }
 ]
 EOF
-
 }
 
 resource "aws_cloudwatch_log_group" "ad-app" {
