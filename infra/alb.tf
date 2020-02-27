@@ -14,14 +14,14 @@ resource "aws_alb_listener" "default_http" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_alb_target_group.ad_target_group.id
+    target_group_arn = aws_alb_target_group.ad-target-group.id
     type             = "forward"
   }
 }
 
 # setup ALB target group
-resource "aws_alb_target_group" "ad_target_group" {
-  name       = "ad_target_group"
+resource "aws_alb_target_group" "ad-target-group" {
+  name       = "ad-target-group"
   port       = 80
   protocol   = "HTTP"
   vpc_id     = aws_vpc.ad-vpc.id
