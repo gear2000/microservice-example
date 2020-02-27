@@ -1,6 +1,6 @@
-# ecs ec2 role - instance IAM
-resource "aws_iam_role" "ecs-ec2-role" {
-  name = "ecs-ec2-role"
+# ecs ec2 role
+resource "aws_iam_role" "ecs-instance-role" {
+  name = "ecs-instance-role"
 
   assume_role_policy = <<EOF
 {
@@ -17,16 +17,17 @@ resource "aws_iam_role" "ecs-ec2-role" {
   ]
 }
 EOF
+
 }
 
-resource "aws_iam_instance_profile" "ecs-ec2-role" {
-  name = "ecs-ec2-role"
-  role = aws_iam_role.ecs-ec2-role.name
+resource "aws_iam_instance_profile" "ecs-instance-role" {
+  name = "ecs-instance-role"
+  role = aws_iam_role.ecs-instance-role.name
 }
 
-resource "aws_iam_role_policy" "ecs-ec2-role-policy" {
-  name = "ecs-ec2-role-policy"
-  role = aws_iam_role.ecs-ec2-role.id
+resource "aws_iam_role_policy" "ecs-instance-role-policy" {
+  name = "ecs-instance-role-policy"
+  role = aws_iam_role.ecs-instance-role.id
 
   policy = <<EOF
 {
@@ -67,9 +68,10 @@ resource "aws_iam_role_policy" "ecs-ec2-role-policy" {
     ]
 }
 EOF
+
 }
 
-# ecs service role - service IAM
+# ecs service role
 resource "aws_iam_role" "ecs-service-role" {
   name = "ecs-service-role"
 
@@ -88,6 +90,7 @@ resource "aws_iam_role" "ecs-service-role" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy_attachment" "ecs-service-attach" {
