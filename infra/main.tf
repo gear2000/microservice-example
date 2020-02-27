@@ -52,9 +52,9 @@ module "security_groups" {
   vpc_id = module.vpc.vpc_id
 }
 
-module "iam_roles" {
-  source = "./modules/iam_roles"
-}
+#module "iam_roles" {
+#  source = "./modules/iam_roles"
+#}
 
 module "alb" {
   source = "./modules/alb"
@@ -67,7 +67,7 @@ module "ecs_asg" {
   source = "./modules/ecs_asg"
   security_groups    = ["${module.security_groups.instance_id}"]
   subnets            = ["${module.vpc.public_subnets[0]}","${module.vpc.public_subnets[1]}"]
-  iam_instance_profile = "${module.iam_roles.iam_instance_profile_id}"
+  #iam_instance_profile = "${module.iam_roles.iam_instance_profile_id}"
   image_id           = data.aws_ami.ecs.id
   #user_data          = data.template_file.ecs-cluster.rendered
 }
