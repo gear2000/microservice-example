@@ -12,42 +12,42 @@ resource "aws_subnet" "public-1" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "172.21.10.0/24"
   map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-2a"
+  availability_zone       = "us-east-1a"
 }
 
 resource "aws_subnet" "public-2" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "172.21.20.0/24"
   map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-2b"
+  availability_zone       = "us-east-1b"
 }
 
 resource "aws_subnet" "public-3" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "172.21.30.0/24"
   map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-2c"
+  availability_zone       = "us-east-1c"
 }
 
 resource "aws_subnet" "private-1" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "172.21.40.0/24"
   map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-2a"
+  availability_zone       = "us-east-1a"
 }
 
 resource "aws_subnet" "private-2" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "172.21.50.0/24"
   map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-2b"
+  availability_zone       = "us-east-1b"
 }
 
 resource "aws_subnet" "private-3" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "172.21.60.0/24"
   map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-2c"
+  availability_zone       = "us-east-1c"
 }
 
 # internet GW
