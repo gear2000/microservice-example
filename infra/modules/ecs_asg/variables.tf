@@ -4,21 +4,6 @@ variable "iam_instance_profile" {
    description = "iam role"
 }
 
-variable "nginx_image_ref" {
-  default     = "williaumwu/ms-nginx:app"
-  description = "Nginx image reference"
-}
-
-variable "get_image_ref" {
-  default     = "williaumwu/ms-app-get"
-  description = "HTTP get image reference"
-}
-
-variable "post_image_ref" {
-  default     = "williaumwu/ms-app-post"
-  description = "HTTP post image reference"
-}
-
 variable "deploy_name" {
    type = string
    description = "Deploy name"
