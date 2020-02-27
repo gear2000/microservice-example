@@ -81,7 +81,6 @@ module "ecs_tasks" {
   cluster_name = var.cluster_name
   cluster_id = aws_ecs_cluster.ad.id
   target_group_arn  = "${module.alb.arn}"
-  #target_group_arn = aws_alb_target_group.app.id
   iam_role          = "${module.iam_roles.iam_service_role_arn}"
 }
 

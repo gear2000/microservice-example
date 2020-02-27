@@ -4,7 +4,6 @@ resource "aws_ecs_service" "ad-app" {
   task_definition = aws_ecs_task_definition.ad-app.arn
   desired_count   = 2
   iam_role        = var.iam_role
-# depends_on      = [aws_iam_role_policy_attachment.ecs-service-attach]
 
   load_balancer {
     target_group_arn = var.target_group_arn
