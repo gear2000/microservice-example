@@ -1,10 +1,12 @@
 # create ALB
 resource "aws_alb" "ad-alb" {
   name            = "ad-alb"
-  subnets         = [aws_subnet.ad-public-1.id, aws_subnet.ad-public-2.id, aws_subnet.ad-public-3.id]
-  security_groups = [aws_security_group.alb.id]
+
+  security_groups      = var.security_groups
+  subnets              = var.subnets
+  enable_deletion_protection = false
   enable_http2    = "true"
-  idle_timeout    = 600
+  idle_timeout    = 300
 }
 
 # setup listeners
@@ -24,7 +26,8 @@ resource "aws_alb_target_group" "app" {
   name       = "app"
   port       = 80
   protocol   = "HTTP"
-  vpc_id     = aws_vpc.ad-vpc.id
+  vpc_id     = var.vpc_id
+
   depends_on = [aws_alb.ad-alb]
 
   stickiness {
@@ -41,8 +44,3 @@ resource "aws_alb_target_group" "app" {
     matcher             = "200,301,302"
   }
 }
-
-output "alb_output" {
-  value = aws_alb.ad-alb.dns_name
-}
-

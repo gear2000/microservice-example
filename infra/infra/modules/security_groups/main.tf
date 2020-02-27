@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb" {
   description = "ports on ALB"
 
-  vpc_id = aws_vpc.ad-vpc.id
+  vpc_id = var.vpc_id
   name   = "ad-app"
 
   ingress {
@@ -22,10 +22,10 @@ resource "aws_security_group" "alb" {
   }
 }
 
-resource "aws_security_group" "instance_sg" {
-  description = "access to application instances"
-  vpc_id      = aws_vpc.ad-vpc.id
-  name        = "application-instances-sg"
+resource "aws_security_group" "instance" {
+  description = "access to application instance"
+  vpc_id = var.vpc_id
+  name        = "application-instance"
 
   ingress {
     protocol    = "tcp"
@@ -45,4 +45,3 @@ resource "aws_security_group" "instance_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
