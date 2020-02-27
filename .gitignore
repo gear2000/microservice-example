@@ -1,0 +1,15 @@
+*.py[co]
+*.pyc
+*.swo
+*.swl
+pip-log.txt
+.coverage
+.tox
+nosetests.xml
+*.mo
+.mr.developer.cfg
+*.swp
+*.swn
+*.swm
+*.pyc
+*.swk
