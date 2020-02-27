@@ -20,8 +20,8 @@ resource "aws_alb_listener" "default_http" {
 }
 
 # setup ALB target group
-resource "aws_alb_target_group" "ad-target-group" {
-  name       = "ad-target-group"
+resource "aws_alb_target_group" "nginx" {
+  name       = "nginx"
   port       = 80
   protocol   = "HTTP"
   vpc_id     = aws_vpc.ad-vpc.id
