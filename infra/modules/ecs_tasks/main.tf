@@ -23,7 +23,7 @@ resource "aws_ecs_task_definition" "ad-app" {
 [
   {
     "name": "nginx",
-    "image": "williaumwu/ms-nginx:app",
+    "image": "${var.nginx_image_ref}",
     "essential": true,
     "portMappings": [
       {

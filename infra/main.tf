@@ -81,5 +81,7 @@ module "ecs_tasks" {
   target_group_arn  = "${module.alb.arn}"
   iam_role          = "${module.iam_roles.iam_service_role_arn}"
   nginx_image_ref   =  var.nginx_image_ref
+  get_image_ref   =  var.get_image_ref
+  post_image_ref   =  var.post_image_ref
 }
 
