@@ -41,7 +41,7 @@ resource "aws_launch_configuration" "launch_configuration" {
   image_id                    = var.image_id
   instance_type               = var.instance_type
   iam_instance_profile        = var.iam_instance_profile
-  user_data                   = var.user_data
+  #user_data                   = var.user_data
   associate_public_ip_address = true
 
   lifecycle {
