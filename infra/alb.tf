@@ -14,7 +14,7 @@ resource "aws_alb_listener" "default_http" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_alb_target_group.ad-target-group.id
+    target_group_arn = aws_alb_target_group.nginx.id
     type             = "forward"
   }
 }

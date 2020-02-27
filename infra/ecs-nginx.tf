@@ -7,7 +7,6 @@ resource "aws_ecs_service" "ad-app" {
   depends_on      = [aws_iam_role_policy_attachment.ecs-service-attach]
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.add-target-group.id
     target_group_arn = aws_alb_target_group.nginx.id
     container_name   = "ad-app"
     container_port   = "80"
