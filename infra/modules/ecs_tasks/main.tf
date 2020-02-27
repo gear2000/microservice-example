@@ -22,30 +22,6 @@ resource "aws_ecs_task_definition" "ad-app" {
   container_definitions = <<EOF
 [
   {
-    "name": "nginx",
-    "image": "williaumwu/ms-nginx:app"
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": 80,
-        "hostPort": 80
-      }
-    ],
-    "links": [ "get",
-               "post"
-    ],
-    "logConfiguration": {
-    "logDriver": "awslogs",
-      "options": {
-        "awslogs-group": "/ecs-ad/ad-app",
-        "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "nginx"
-      }
-    },
-    "memory": 256,
-    "cpu": 10
-  },
-  {
     "name": "get",
     "image": "williaumwu/ms-app:get",
     "essential": true,
