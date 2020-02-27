@@ -60,7 +60,7 @@ resource "aws_ecs_task_definition" "ad-app" {
       "options": {
         "awslogs-group": "/ecs-ad/ad-app",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "get"
+        "awslogs-stream-prefix": "app"
       }
     },
     "memory": 256,
@@ -81,7 +81,7 @@ resource "aws_ecs_task_definition" "ad-app" {
       "options": {
         "awslogs-group": "/ecs-ad/ad-app",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "post"
+        "awslogs-stream-prefix": "app"
       }
     },
     "memory": 256,

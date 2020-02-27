@@ -13,24 +13,6 @@
 **File Layout**
 
 ```
-|-- post
-|   |-- bin
-|   |   |-- run.py
-|   |   `-- run.sh
-|   |-- Dockerfile
-|   `-- requirements.txt
-|-- nginx
-|   |-- default.conf
-|   `-- Dockerfile
-|-- get
-|   |-- bin
-|   |   |-- run.py
-|   |   `-- run.sh
-|   |-- Dockerfile
-|   `-- requirements.txt
-|-- docker-compose.yml
-|-- ecs-params.yml
-`-- README.md
 ```
 
 **Build**
@@ -59,22 +41,29 @@ docker push <docker_username>/ms-app-post:latest
 docker-compose up -d
 ```
 
-  - To deploy to ECS:
+  - To deploy to ECS and autoscaling groups
+  
+    - enter the infra folder
 
-Create ECS cluster with autoscaling groups
+    - modify the parameterized variables in
 
-Standup application as a ECS task
 ```
-ecs-cli compose service up --cluster test --cluster-config sample
+terraform.tfvars
 ```
 
-View cluster processes/status
-```
-ecs-cli ps --cluster test
+    - install the Terraform according to the version in version.tf
 
-Tear down tasks when done
+    - perform the initial install and creation of resources and application
 ```
-ecs-cli compose service down --cluster test --cluster-config sample
+terraform init
+terraform plan
+terraform apply
+```
+
+    - to do a zero-time deploy, update the docker images according in terraform.tfvars, make zero-time deploys with the commands:
+```
+terraform plan
+terraform apply
 ```
 
 **CI/CD **
