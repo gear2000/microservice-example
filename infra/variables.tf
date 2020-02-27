@@ -8,7 +8,7 @@ variable "region" {
 variable "cluster_name" {
   type = string
   description = "ECS cluster name"
-  default     = "ad_app"
+  default     = "ad-app"
 }
 
 variable "deploy_name" {

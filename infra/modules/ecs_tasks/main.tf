@@ -95,4 +95,3 @@ EOF
 resource "aws_cloudwatch_log_group" "ad-app" {
   name = "/ecs-ad/ad-app"
 }
-
