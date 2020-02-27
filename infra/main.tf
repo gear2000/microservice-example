@@ -30,23 +30,23 @@ data "template_file" "ecs-cluster" {
   }
 }
 
-module "vpc" {
-  source = "./modules/vpc"
-}
-
 #module "vpc" {
-#  source = "terraform-aws-modules/vpc/aws"
-#
-#  name = var.vpc_name
-#  cidr = var.cidr
-#
-#  azs             = var.azs
-#  private_subnets = var.private_subnets
-#  public_subnets  = var.public_subnets
-#
-#  enable_nat_gateway = true
-#
+#  source = "./modules/vpc"
 #}
+
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = var.vpc_name
+  cidr = var.cidr
+
+  azs             = var.azs
+  private_subnets = var.private_subnets
+  public_subnets  = var.public_subnets
+
+  enable_nat_gateway = true
+
+}
 
 module "security_groups" {
   source = "./modules/security_groups"
