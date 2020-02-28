@@ -92,6 +92,7 @@ resource "aws_ecs_task_definition" "ad-app" {
 EOF
 }
 
+# Create cloud watch logs
 resource "aws_cloudwatch_log_group" "ad-app" {
   name = "/ecs-ad/ad-app"
 }

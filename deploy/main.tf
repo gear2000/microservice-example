@@ -75,13 +75,13 @@ resource "aws_ecs_cluster" "ad" {
 
 # deploy app
 module "ecs_tasks" {
-  source = "./modules/ecs_tasks"
-  cluster_name = var.cluster_name
-  cluster_id = aws_ecs_cluster.ad.id
+  source            = "./modules/ecs_tasks"
+  cluster_name      = var.cluster_name
+  cluster_id        = aws_ecs_cluster.ad.id
   target_group_arn  = "${module.alb.arn}"
   iam_role          = "${module.iam_roles.iam_service_role_arn}"
   nginx_image_ref   =  var.nginx_image_ref
-  get_image_ref   =  var.get_image_ref
-  post_image_ref   =  var.post_image_ref
+  get_image_ref     =  var.get_image_ref
+  post_image_ref    =  var.post_image_ref
 }
 

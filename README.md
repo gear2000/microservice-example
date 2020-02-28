@@ -17,6 +17,8 @@
 
 **Build**
 
+  - The application is found in the "app" folder
+
   - Each microservice is separated into their own folder with a Dockerfile used for building the image.
 
   - For example, to build the app microservice and push it to Dockerhub:
@@ -35,7 +37,7 @@ docker push <docker_username>/ms-app-post:latest
 
 **Deploy**
 
-  - To deploy, you can standup the application on your laptop by using using the docker-compose.yml file.
+  - To deploy, you can standup the application on your laptop by using using the docker-compose.yml file in the app folder.
 
 ```
 docker-compose up -d
@@ -43,9 +45,21 @@ docker-compose up -d
 
   - To deploy to ECS and autoscaling groups
   
-    - enter the infra folder
+    - use the "deploy" folder that contains the Terraform files
 
-    - modify the parameterized variables in
+    - the deploy is separated into Terraform modules:
+      
+      - main.tf - the main entry file for Terraform.  It creates the VPC and securely deploys the application on ECS.
+      - terraform.tfvars - modify this to control some parameters for deploying the application
+      - modules/iam_roles - the IAM roles to restrict and allow permissions on AWS
+      - modules/alb - the Application load balancer that "services" or makes the application accessible.
+      - modules/ecs_asg - the Autoscaling group that automatically scale and up down according to CPU 
+      - modules/ecs_tasks - the ECS deployment of the application
+      - modules/security_groups - the security groups created for both the load balancer and the ECS servers
+
+    - to deploy
+     
+      - modify the parameterized variables in
 
 ```
 terraform.tfvars
@@ -59,8 +73,7 @@ terraform init
 terraform plan
 terraform apply
 ```
-
-    - to do a zero-time deploy, update the docker images according in terraform.tfvars, make zero-time deploys with the commands:
+    - to do a zero-time deploy, update the docker images and the deploy_name accordingly in terraform.tfvars
 ```
 terraform plan
 terraform apply
