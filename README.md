@@ -1,6 +1,6 @@
 **Description**
 
-  - The application that contains two endpoints: /ad, /ad-event
+  - The application contains two endpoints: /ad, /ad-event
 
   - The application consist of three microservices: 
 
@@ -37,37 +37,35 @@ docker push <docker_username>/ms-app-post:latest
 
 **Deploy**
 
-  - To deploy, you can standup the application on your laptop by using using the docker-compose.yml file in the app folder.
+  - You can standup the application on your laptop with included docker-compose.yml file.
 
 ```
+cd app
 docker-compose up -d
 ```
 
-  - To deploy to ECS and autoscaling groups
+  - To deploy to ECS with autoscaling groups
   
-    - use the "deploy" folder that contains the Terraform files
+    - the deploy folder contains the Terraform files
 
-    - the deploy is separated into Terraform modules:
+    - these files are relevant:
       
       - main.tf - the main entry file for Terraform.  It creates the VPC and securely deploys the application on ECS.
       - terraform.tfvars - modify this to control some parameters for deploying the application
-      - modules/iam_roles - the IAM roles to restrict and allow permissions on AWS
-      - modules/alb - the Application load balancer that "services" or makes the application accessible.
-      - modules/ecs_asg - the Autoscaling group that automatically scale and up down according to CPU 
-      - modules/ecs_tasks - the ECS deployment of the application
-      - modules/security_groups - the security groups created for both the load balancer and the ECS servers
+      - modules/iam_roles - a Terraform module for IAM roles to restrict and allow permissions on AWS
+      - modules/alb - a Terraform module for the Application load balancer that "services" or makes the application accessible.
+      - modules/ecs_asg - a Terraform module that creates the Autoscaling group that automatically scale and up down according to CPU 
+      - modules/ecs_tasks - a Terraform module performs the ECS deployment of the application
+      - modules/security_groups - a Terraform module that creates the security groups for the load balancer and the ECS servers
 
-    - to deploy
+    - for example, to deploy on AWS
      
-      - modify the parameterized variables in
+      - modify the parameterized variables in terraform.tfvars
 
-```
-terraform.tfvars
-```
+      - install the Terraform according to the version in version.tf
 
-    - install the Terraform according to the version in version.tf
+      - perform the initial install and creation of resources and application with the following commands:
 
-    - perform the initial install and creation of resources and application
 ```
 terraform init
 terraform plan
