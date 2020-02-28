@@ -71,7 +71,12 @@ terraform init
 terraform plan
 terraform apply
 ```
-    - to do a zero-time deploy, update the docker images and the deploy_name accordingly in terraform.tfvars
+    - for example, to deploy on AWS
+
+    - Re-deploy (zero-time)
+    
+      Terraform will automatically redeploy the application when you specifically change the deploy_name.  To automate this, you can create a hash or unique deploy identifier that for example is derived from the image references and date. For implementing a complete CI/CD solution, you can take the image reference with the commit hash and then create a deploy identifier with the image references and the date of the deploy.  This can be implemented on your choice of a CI system.  Please read the below about CI/CD.
+
 ```
 terraform plan
 terraform apply
