@@ -48,34 +48,30 @@ docker-compose up -d
 
     - the deploy folder contains the Terraform files
 
-```
-.
-├── main.tf
-├── modules
-│   ├── alb
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
-│   ├── ecs_asg
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
-│   ├── ecs_tasks
-│   │   ├── main.tf
-│   │   └── variables.tf
-│   ├── iam_roles
-│   │   ├── main.tf
-│   │   └── outputs.tf
-│   └── security_groups
-│       ├── main.tf
-│       ├── outputs.tf
-│       └── variables.tf
-├── terraform.tfvars
-├── variables.tf
-└── versions.tf
-```
+      ├── main.tf
+      ├── modules
+      │   ├── alb
+      │   │   ├── main.tf
+      │   │   ├── outputs.tf
+      │   │   └── variables.tf
+      │   ├── ecs_asg
+      │   │   ├── main.tf
+      │   │   ├── outputs.tf
+      │   │   └── variables.tf
+      │   ├── ecs_tasks
+      │   │   ├── main.tf
+      │   │   └── variables.tf
+      │   ├── iam_roles
+      │   │   ├── main.tf
+      │   │   └── outputs.tf
+      │   └── security_groups
+      │       ├── main.tf
+      │       ├── outputs.tf
+      │       └── variables.tf
+      ├── terraform.tfvars
+      ├── variables.tf
+      └── versions.tf
 
-```
     - these files are relevant:
       
       - main.tf - the main entry file for Terraform.  It creates the VPC and securely deploys the application on ECS.
