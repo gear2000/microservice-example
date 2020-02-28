@@ -1,6 +1,9 @@
 **Description**
 
-  - The application contains two endpoints: /ad, /ad-event
+  - The application consists of two endpoints: 
+    
+    - /ad - takes a HTTP get and logs the request in standard out
+    - /ad-event - takes a HTTP post and logs the request in standard out
 
   - The application consist of three microservices: 
 
@@ -13,6 +16,31 @@
 **File Layout**
 
 ```
+.
+├── main.tf
+├── modules
+│   ├── alb
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── ecs_asg
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── ecs_tasks
+│   │   ├── main.tf
+│   │   └── variables.tf
+│   ├── iam_roles
+│   │   ├── main.tf
+│   │   └── outputs.tf
+│   └── security_groups
+│       ├── main.tf
+│       ├── outputs.tf
+│       └── variables.tf
+├── terraform.tfvars
+├── variables.tf
+└── versions.tf
+
 ```
 
 **Build**
@@ -37,7 +65,7 @@ docker push <docker_username>/ms-app-post:latest
 
 **Deploy**
 
-  - You can standup the application on your laptop with included docker-compose.yml file.
+  - You can standup the application on your laptop with the included docker-compose.yml file.
 
 ```
 cd app
