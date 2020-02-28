@@ -75,6 +75,7 @@ docker-compose up -d
 └── versions.tf
 ```
 
+```
     - these files are relevant:
       
       - main.tf - the main entry file for Terraform.  It creates the VPC and securely deploys the application on ECS.
