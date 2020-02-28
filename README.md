@@ -15,34 +15,6 @@
     
 **File Layout**
 
-```
-.
-├── main.tf
-├── modules
-│   ├── alb
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
-│   ├── ecs_asg
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
-│   ├── ecs_tasks
-│   │   ├── main.tf
-│   │   └── variables.tf
-│   ├── iam_roles
-│   │   ├── main.tf
-│   │   └── outputs.tf
-│   └── security_groups
-│       ├── main.tf
-│       ├── outputs.tf
-│       └── variables.tf
-├── terraform.tfvars
-├── variables.tf
-└── versions.tf
-
-```
-
 **Build**
 
   - The application is found in the "app" folder
@@ -73,8 +45,36 @@ docker-compose up -d
 ```
 
   - To deploy to ECS with autoscaling groups
-  
+
     - the deploy folder contains the Terraform files
+
+```
+.
+├── main.tf
+├── modules
+│   ├── alb
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── ecs_asg
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── ecs_tasks
+│   │   ├── main.tf
+│   │   └── variables.tf
+│   ├── iam_roles
+│   │   ├── main.tf
+│   │   └── outputs.tf
+│   └── security_groups
+│       ├── main.tf
+│       ├── outputs.tf
+│       └── variables.tf
+├── terraform.tfvars
+├── variables.tf
+└── versions.tf
+
+```
 
     - these files are relevant:
       
