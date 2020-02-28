@@ -72,15 +72,15 @@ terraform plan
 terraform apply
 ```
 
-**Zero-time Deploy **
+**Zero-time Deploy**
     
-      Terraform will automatically redeploy the application when you specifically change the deploy_name.  To automate this, you can create a hash or unique deploy identifier that for example is derived from the image references and date. For implementing a complete CI/CD solution, you can take the image reference with the commit hash and then create a deploy identifier with the image references and the date of the deploy.  This can be implemented on your choice of a CI system.  Please read the below about CI/CD.
+Terraform will automatically redeploy the application when you specifically change the deploy_name.  To automate this, you can create a hash or unique deploy identifier that for example is derived from the image references and date. For implementing a complete CI/CD solution, you can take the image reference with the commit hash and then create a deploy identifier with the image references and the date of the deploy.  This can be implemented on your choice of a CI system.  Please read the below about CI/CD.
 
 ```
 terraform plan
 terraform apply
 ```
 
-**CI/CD **
+**CI/CD**
 
 Continuous delivery (CD) automatically executes unit tests, performs docker builds, and provides automatic deployments.  Users have the option of using a variety of continuous integration (CI) tools such as SaaS products like CircleCI and TravisCI, and more customizable open source options like ConcourceCI and Jenkins.  The SaaS provides will also handle the plumbing (Webhooks/GitOps) like connecting Github/Bitbucket to the CI system. Again, the main criteria is control vs resources; having more control requires more skilled people.  Regardless, any CI system will increase your software velocity, while producing more reliable software. It is truly a win-win situation. To extend CI to CD, it suggested users implement GitOps to control and version deployments through git commits. It is also recommended users practice blue/green canary deploys to safely and progressively cut over to new software without having to schedule downtime.
