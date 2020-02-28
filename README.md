@@ -71,6 +71,9 @@ terraform init
 terraform plan
 terraform apply
 ```
+
+
+
     - for example, to deploy on AWS
 
     - Re-deploy (zero-time)
