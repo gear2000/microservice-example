@@ -73,23 +73,23 @@ docker-compose up -d
 └── versions.tf
 ```
 
-    - these files are relevant:
-      
-      - main.tf - the main entry file for Terraform.  It creates the VPC and securely deploys the application on ECS.
-      - terraform.tfvars - modify this to control some parameters for deploying the application
-      - modules/iam_roles - a Terraform module for IAM roles to restrict and allow permissions on AWS
-      - modules/alb - a Terraform module for the Application load balancer that "services" or makes the application accessible.
-      - modules/ecs_asg - a Terraform module that creates the Autoscaling group that automatically scale and up down according to CPU 
-      - modules/ecs_tasks - a Terraform module performs the ECS deployment of the application
-      - modules/security_groups - a Terraform module that creates the security groups for the load balancer and the ECS servers
+- these files are relevant:
+  
+  - main.tf - the main entry file for Terraform.  It creates the VPC and securely deploys the application on ECS.
+  - terraform.tfvars - modify this to control some parameters for deploying the application
+  - modules/iam_roles - a Terraform module for IAM roles to restrict and allow permissions on AWS
+  - modules/alb - a Terraform module for the Application load balancer that "services" or makes the application accessible.
+  - modules/ecs_asg - a Terraform module that creates the Autoscaling group that automatically scale and up down according to CPU 
+  - modules/ecs_tasks - a Terraform module performs the ECS deployment of the application
+  - modules/security_groups - a Terraform module that creates the security groups for the load balancer and the ECS servers
 
-    - for example, to deploy on AWS
-     
-      - modify the parameterized variables in terraform.tfvars
+- for example, to deploy on AWS
+ 
+  - modify the parameterized variables in terraform.tfvars
 
-      - install the Terraform according to the version in version.tf
+  - install the Terraform according to the version in version.tf
 
-      - perform the initial install and creation of resources and application with the following commands:
+  - perform the initial install and creation of resources and application with the following commands:
 
 ```
 terraform init
