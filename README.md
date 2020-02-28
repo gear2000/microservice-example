@@ -73,7 +73,6 @@ docker-compose up -d
 ├── terraform.tfvars
 ├── variables.tf
 └── versions.tf
-
 ```
 
     - these files are relevant:
