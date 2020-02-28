@@ -99,7 +99,7 @@ terraform apply
 
 **Zero-time Deploy**
     
-Terraform will automatically redeploy the application when you specifically change the deploy_name.  To automate this, you can create a hash or unique deploy identifier that for example is derived from the image references and date. For implementing a complete CI/CD solution, a unique identifier could be the commit hashes that is integrated with your choice of a CI system.  Please read the below about CI/CD. Please note, the redeploy is not a progressive blue/green canary deploy.  To implement this, it's suggested to use the cloud formation that natively has that feature or integrate a traditional weighted DNS cutoff.
+Terraform will automatically redeploy the application when you specifically change the deploy_name.  To automate this, you can create a hash or unique deploy identifier that for example is derived from the image references and date. For implementing a complete CI/CD solution, a unique identifier could be the commit hashes that is integrated with your choice of a CI system.  Please read the below about CI/CD. Please note, the redeploy is not a progressive blue/green canary deploy.  To implement blue/green canary deploy, some options include a traditional weighted DNS cutover or considering a switch to Cloudformation that has this feature built-in.
 
 ```
 terraform plan
